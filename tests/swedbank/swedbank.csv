@@ -1,0 +1,9 @@
+"Client account";"Row type";"Date";"Beneficiary/Payer";"Details";"Amount";"Currency";"Debit/Credit";"Transfer reference";"Transaction type";"Reference number";"Document number";
+"EE000000000000000000";"10";"04.09.2018";"";"Opening balance";"1000,00";"EUR";"K";"";"AS";"";"";
+"EE000000000000000000";"20";"04.09.2018";"EESTI ENERGIA AS";"Invoice No: 0000000000";"20,00";"EUR";"D";"000000000000000";"MK";"00000000000";"111";
+"EE000000000000000000";"20";"05.09.2018";"MY FITNESS AS";"Invoice No: 00000000";"50,00";"EUR";"D";"000000000000000";"MK";"00000000000";"222";
+"EE000000000000000000";"20";"05.09.2018";"TELIA EESTI AS";"Internet payment";"30,00";"EUR";"D";"000000000000000";"MK";"00000000000";"333";
+"EE000000000000000000";"20";"05.09.2018";"John Doe";"Private Payment";"50,00";"EUR";"K";"000000000000000";"MK";"";"";
+"EE000000000000000000";"82";"05.09.2018";"";"Turnover";"100,00";"EUR";"D";"";"K2";"";"";
+"EE000000000000000000";"82";"05.09.2018";"";"Turnover";"50,00";"EUR";"K";"";"K2";"";"";
+"EE000000000000000000";"86";"05.09.2018";"";"closing balance";"950,00";"EUR";"K";"";"LS";"";"";

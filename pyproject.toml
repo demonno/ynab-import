@@ -1,0 +1,36 @@
+[tool.poetry]
+name = "ynab-import"
+version = "0.1.0"
+description = "Automate transaction import troubles to ynab."
+authors = ["demonno <demur.nodia@gmail.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.7"
+dataclass-csv = "^1.1"
+environs = "^7.1"
+dataclasses-json = "^0.3.6"
+
+[tool.poetry.dev-dependencies]
+isort = "^4.3"
+mypy = "^0.750.0"
+
+[tool.poetry.scripts]
+ynab-import = "ynab_import.main:main"
+
+
+[tool.black]
+line-length = 120
+py36 = false
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.git
+  | build
+  | dist
+)/
+'''
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
