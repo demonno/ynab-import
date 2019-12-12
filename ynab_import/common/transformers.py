@@ -6,8 +6,9 @@ from ynab_import.swedbank.models import SwedbankTransaction
 
 
 class Transformer(object):
-    def __init__(self) -> None:
+    def __init__(self, account_id: str) -> None:
         self.counter = Counter()
+        self.account_id = account_id
 
     def _to_milliunit(self, amount: float) -> int:
         return int(amount * 1000)

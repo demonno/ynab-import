@@ -27,7 +27,7 @@ class SwedBankTransformer(Transformer):
             import_id = self.generate_import_id(tr.client_account, tr.amount, tr.date.isoformat(),)
             res.append(
                 YnabTransaction(
-                    account_id="5ac8ae22-ece4-49cd-ba98-a72379fa8014",
+                    account_id=self.account_id,
                     date=tr.date.isoformat(),
                     amount=tr.amount,
                     payee_name=tr.payee,

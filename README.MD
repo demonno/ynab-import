@@ -9,40 +9,14 @@ In Ynab you have budgets, each budget has one or more accounts with transactions
 
 ### Developer API
 
-* https://api.youneedabudget.com/
-
-
-
-# CSVPRovider - Reads from csv file
-    * SwedBankCSVProvider
-    * RevolutCSVProvider
-    # idea if possible: Takes input metadata how to read from csv and output dataclass (set default and allow override)
-# APIProvider
-    * SwedBankAPIProvider
-    * RevolutAPIProvider
-    # Takes nessesory arguments for initialization and  output dataclass (set default and allow override)
-# Transformation
-    * Generic class
-    * Needs From Dataclass to Dataclass
-    * Needs spesific transformation logics
-    * Should be possible to use on list of data
-# Runner
-    *  Based on configuration loads and runs providers and transformations
-    
+* https://api.youneedabudget.com/    
     
     
 #User API
-
-
-User spesifies 
- which bank are you importinh [swedbank, revolut]
- where to get transaction data [read_from_csv_file, read_from_api]
- import mode [output_import_csv, import_using_API]
  
- 
- ynab-import --source swedbank --read-from api --write-to api
- ynab-import --source swedbank --read-from file --write-to file
- ynab-import --source swedbank --read-from file --write-to api
+     ynab-import --s swedbank -r api -w api
+     ynab-import --s swedbank -r file.csv -w file.csv
+     ynab-import --s swedbank -r file.csv -w api
  
  Some default/extra configurations required
  

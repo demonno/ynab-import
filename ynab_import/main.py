@@ -1,6 +1,8 @@
 import argparse
 from typing import Dict, Any
 
+from environs import Env
+
 from ynab_import.swedbank.providers import SwedbankCSVProvider
 from ynab_import.swedbank.transformers import SwedBankTransformer
 from ynab_import.ynab.providers import YnabBudget
@@ -26,7 +28,10 @@ def parse_args() -> Dict[str, Any]:
         "For API access tokens should be configured",
     )
     parser.add_argument(
-        "-w", "--write-to", dest="write_to", help="Specify where to output from",
+        "-w", "--write-to", dest="write_to", help="Specify where to send result",
+    )
+    parser.add_argument(
+        "-a", "--account_id", dest="account_id", help="Specify ynab account id",
     )
     parser.add_argument("-v", "--version", action="store_true", dest="show_version")
     arguments = parser.parse_args()
@@ -39,9 +44,10 @@ def main() -> None:
     read_from = arguments.read_from
     write_to = arguments.write_to
     source = arguments.source
+    account_id = arguments.account_id
     sw = SwedbankCSVProvider()
     data = sw.read_csv(read_from)
-    tr = SwedBankTransformer()
+    tr = SwedBankTransformer(account_id=account_id)
     data = tr.to_ynab_transactions(data)
     if write_to == "stdout":
         for i in data:
