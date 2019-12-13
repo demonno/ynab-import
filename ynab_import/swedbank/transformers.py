@@ -24,7 +24,7 @@ class SwedBankTransformer(Transformer):
             if tr.memo in self.SKIP_KEYWORDS:
                 continue
             tr = self.prepare_data(tr)
-            import_id = self.generate_import_id(tr.client_account, tr.amount, tr.date.isoformat(),)
+            import_id = self.generate_import_id(self.account_id, tr.amount, tr.date.isoformat(),)
             res.append(
                 YnabTransaction(
                     account_id=self.account_id,

@@ -19,11 +19,11 @@ class Transformer(object):
     def ynab_amount(self, amount: str) -> int:
         return self._to_milliunit(self._to_float(amount))
 
-    def generate_import_id(self, client_account: str, amount: str, iso_date: str):
+    def generate_import_id(self, account_id: str, amount: str, iso_date: str):
         import_id = "YNAB:{milliunit_amount}:{iso_date}:{occurrence}".format(
-            milliunit_amount=amount, iso_date=iso_date, occurrence=self.counter[(client_account, amount, iso_date)],
+            milliunit_amount=amount, iso_date=iso_date, occurrence=self.counter[(account_id, amount, iso_date)],
         )
-        self.counter[(client_account, amount, iso_date)] += 1
+        self.counter[(account_id, amount, iso_date)] += 1
         return import_id
 
     def prepare_data(self, swedbank: SwedbankTransaction) -> SwedbankTransaction:
