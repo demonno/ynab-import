@@ -17,7 +17,10 @@ class Transformer(object):
         return float(amount.replace(",", "."))
 
     def ynab_amount(self, amount: str) -> int:
+        if not amount.strip():
+            return 0
         return self._to_milliunit(self._to_float(amount))
+
 
     def generate_import_id(self, account_id: str, amount: str, iso_date: str):
         import_id = "YNAB:{milliunit_amount}:{iso_date}:{occurrence}".format(
@@ -26,7 +29,7 @@ class Transformer(object):
         self.counter[(account_id, amount, iso_date)] += 1
         return import_id
 
-    def prepare_data(self, swedbank: SwedbankTransaction) -> SwedbankTransaction:
+    def prepare_data(self, transaction: Transaction) -> Transaction:
         raise NotImplemented
 
     def to_ynab_transactions(self, transactions: List[Transaction]) -> List[YnabTransaction]:

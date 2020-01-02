@@ -9,9 +9,9 @@ from ynab_import.common.providers import APIProvider
 
 
 class YnabBudget(APIProvider):
-    def __init__(self) -> None:
-        self.api_key = settings.YNAB_API_KEY
-        self.budget_id = settings.YNAB_BUDGET_ID
+    def __init__(self, api_key: str, budget_id: str) -> None:
+        self.api_key = api_key
+        self.budget_id = budget_id
 
     def create_transactions(self, transactions: List[YnabTransaction]) -> int:
         headers = {"Authorization": f"Bearer {self.api_key}"}

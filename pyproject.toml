@@ -10,6 +10,7 @@ python = "^3.7"
 dataclass-csv = "^1.1"
 environs = "^7.1"
 dataclasses-json = "^0.3.6"
+environ = "^1.0"
 
 [tool.poetry.dev-dependencies]
 isort = "^4.3"
