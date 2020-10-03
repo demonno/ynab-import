@@ -11,6 +11,7 @@ dataclass-csv = "^1.1"
 environs = "^7.1"
 dataclasses-json = "^0.3.6"
 environ = "^1.0"
+click = "^7.1"
 
 [tool.poetry.dev-dependencies]
 isort = "^4.3"

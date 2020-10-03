@@ -19,4 +19,3 @@ class RevolutTransaction(Transaction):
     balance_eur: str
     category: str
     notes: str = ""
-

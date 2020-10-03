@@ -20,6 +20,6 @@ class YnabTransaction(Transaction):
     memo: str
     import_id: str
 
-    cleared: bool = True
+    cleared: str = "cleared"
     approved: bool = False
     flag_color: str = "red"

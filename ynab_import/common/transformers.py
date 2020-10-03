@@ -2,7 +2,6 @@ from collections import Counter
 from typing import List
 
 from ynab_import.common.models import Transaction, YnabTransaction
-from ynab_import.swedbank.models import SwedbankTransaction
 
 
 class Transformer(object):
@@ -20,7 +19,6 @@ class Transformer(object):
         if not amount.strip():
             return 0
         return self._to_milliunit(self._to_float(amount))
-
 
     def generate_import_id(self, account_id: str, amount: str, iso_date: str):
         import_id = "YNAB:{milliunit_amount}:{iso_date}:{occurrence}".format(
