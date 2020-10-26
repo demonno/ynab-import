@@ -1,18 +1,21 @@
+import abc
 from collections import Counter
 from typing import List
 
 from ynab_import.common.models import Transaction, YnabTransaction
 
 
-class Transformer(object):
+class Transformer(abc.ABC):
     def __init__(self, account_id: str) -> None:
-        self.counter = Counter()
+        self.counter: Counter = Counter()
         self.account_id = account_id
 
-    def _to_milliunit(self, amount: float) -> int:
+    @staticmethod
+    def _to_milliunit(amount: float) -> int:
         return int(amount * 1000)
 
-    def _to_float(self, amount: str) -> float:
+    @staticmethod
+    def _to_float(amount: str) -> float:
         return float(amount.replace(",", "."))
 
     def ynab_amount(self, amount: str) -> int:
@@ -22,13 +25,19 @@ class Transformer(object):
 
     def generate_import_id(self, account_id: str, amount: str, iso_date: str):
         import_id = "YNAB:{milliunit_amount}:{iso_date}:{occurrence}".format(
-            milliunit_amount=amount, iso_date=iso_date, occurrence=self.counter[(account_id, amount, iso_date)],
+            milliunit_amount=amount,
+            iso_date=iso_date,
+            occurrence=self.counter[(account_id, amount, iso_date)],
         )
         self.counter[(account_id, amount, iso_date)] += 1
         return import_id
 
+    @abc.abstractmethod
     def prepare_data(self, transaction: Transaction) -> Transaction:
-        raise NotImplemented
+        raise NotImplementedError
 
-    def to_ynab_transactions(self, transactions: List[Transaction]) -> List[YnabTransaction]:
-        raise NotImplemented
+    @abc.abstractmethod
+    def to_ynab_transactions(
+        self, transactions: List[Transaction]
+    ) -> List[YnabTransaction]:
+        raise NotImplementedError

@@ -14,24 +14,24 @@ environ = "^1.0"
 click = "^7.1"
 
 [tool.poetry.dev-dependencies]
-isort = "^4.3"
-mypy = "^0.750.0"
+isort = "^5.4.2"
+mypy = "^0.782"
+black = "^19.10b0"
+flake8 = "^3.8.4"
+bump2version = "^1.0.1"
+safety = "^1.9.0"
+pytest = "^6.1.1"
+pytest-cov = "^2.10.1"
+pytest-sugar = "^0.9.4"
 
 [tool.poetry.scripts]
 ynab-import = "ynab_import.main:main"
 
+[tool.isort]
+profile = "black"
+combine_as_imports = true
+src_paths = ["ynab_import", "tests"]
 
-[tool.black]
-line-length = 120
-py36 = false
-include = '\.pyi?$'
-exclude = '''
-/(
-    \.git
-  | build
-  | dist
-)/
-'''
 
 [build-system]
 requires = ["poetry>=0.12"]

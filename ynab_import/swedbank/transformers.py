@@ -14,16 +14,20 @@ class SwedBankTransformer(Transformer):
     def prepare_data(self, swedbank: SwedbankTransaction) -> SwedbankTransaction:
         ynab_amount = self.ynab_amount(swedbank.amount)
         if swedbank.debit_credit == "D":
-            ynab_amount = ynab_amount * -1
+            ynab_amount = str(ynab_amount * -1)
         return replace(swedbank, amount=ynab_amount)
 
-    def to_ynab_transactions(self, transactions: List[SwedbankTransaction]) -> List[YnabTransaction]:
+    def to_ynab_transactions(
+        self, transactions: List[SwedbankTransaction]
+    ) -> List[YnabTransaction]:
         res = []
         for tr in transactions:
             if tr.memo in self.SKIP_KEYWORDS:
                 continue
             tr = self.prepare_data(tr)
-            import_id = self.generate_import_id(self.account_id, tr.amount, tr.date.isoformat(),)
+            import_id = self.generate_import_id(
+                self.account_id, tr.amount, tr.date.isoformat(),
+            )
             res.append(
                 YnabTransaction(
                     account_id=self.account_id,

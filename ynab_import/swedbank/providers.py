@@ -16,7 +16,9 @@ class SwedbankCSVProvider(CSVProvider):
 
     def read_csv(self, input_file: str) -> List[SwedbankTransaction]:
         with open(input_file, "r", encoding="utf8") as f:
-            reader = DataclassReader(f, SwedbankTransaction, delimiter=";", quotechar='"')
+            reader = DataclassReader(
+                f, SwedbankTransaction, delimiter=";", quotechar='"'
+            )
             reader.map(self.CLIENT_ACCOUNT).to("client_account")
             reader.map(self.DATE).to("date")
             reader.map(self.PAYEE).to("payee")

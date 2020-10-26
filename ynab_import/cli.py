@@ -1,16 +1,18 @@
 import click
-from ynab_import.revolut.transformers import RevolutTransformer
 
 from ynab_import.revolut.providers import RevolutCSVProvider
+from ynab_import.revolut.transformers import RevolutTransformer
 from ynab_import.swedbank.providers import SwedbankCSVProvider
 from ynab_import.swedbank.transformers import SwedBankTransformer
 from ynab_import.ynab.providers import YnabBudget
 
 
 @click.command()
-@click.option("--source", envvar="SOURCE", type=click.Choice(["swerbank", "revolut"]))
+@click.option("--source", envvar="SOURCE", type=click.Choice(["swedbank", "revolut"]))
 @click.option("--read-from", envvar="READ_FROM")
-@click.option("--write-to", envvar="WRITE_TO", type=click.Choice(["stdout", "api"]))
+@click.option(
+    "--write-to", envvar="WRITE_TO", default="api", type=click.Choice(["stdout", "api"])
+)
 @click.option("--account-id", envvar="YNAB_ACCOUNT_ID")
 @click.option("--budget-id", envvar="YNAB_BUDGET_ID")
 @click.option("--api-key", envvar="YNAB_API_KEY")

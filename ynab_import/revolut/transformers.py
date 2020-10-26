@@ -12,22 +12,36 @@ class RevolutTransformer(Transformer):
     SKIP_KEYWORDS = ["Metal Cashback"]
 
     def prepare_data(self, transaction: RevolutTransaction) -> RevolutTransaction:
-        paid_out_eur = self.ynab_amount(transaction.paid_out_eur) if transaction.paid_out_eur else ""
-        paid_in_eur = self.ynab_amount(transaction.paid_in_eur) if transaction.paid_in_eur else ""
+        paid_out_eur = (
+            self.ynab_amount(transaction.paid_out_eur)
+            if transaction.paid_out_eur
+            else ""
+        )
+        paid_in_eur = (
+            self.ynab_amount(transaction.paid_in_eur) if transaction.paid_in_eur else ""
+        )
         description = transaction.description.strip()
         notes = transaction.notes.strip()
         return replace(
-            transaction, description=description, notes=notes, paid_out_eur=paid_out_eur, paid_in_eur=paid_in_eur
+            transaction,
+            description=description,
+            notes=notes,
+            paid_out_eur=paid_out_eur,
+            paid_in_eur=paid_in_eur,
         )
 
-    def to_ynab_transactions(self, transactions: List[RevolutTransaction]) -> List[YnabTransaction]:
+    def to_ynab_transactions(
+        self, transactions: List[RevolutTransaction]
+    ) -> List[YnabTransaction]:
         res = []
         for tr in transactions:
             if tr.description.strip() in self.SKIP_KEYWORDS:
                 continue
             tr = self.prepare_data(tr)
             amount = tr.paid_in_eur or -1 * tr.paid_out_eur
-            import_id = self.generate_import_id(self.account_id, amount, tr.completed_date.isoformat(),)
+            import_id = self.generate_import_id(
+                self.account_id, amount, tr.completed_date.isoformat(),
+            )
             res.append(
                 YnabTransaction(
                     account_id=self.account_id,
@@ -35,9 +49,9 @@ class RevolutTransformer(Transformer):
                     amount=amount,
                     payee_name=tr.description,
                     memo=tr.notes,
-                    cleared="cleared",
+                    cleared=None,
                     approved=False,
-                    flag_color="yellow",
+                    flag_color="green",
                     import_id=import_id,
                 )
             )
