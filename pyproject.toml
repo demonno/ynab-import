@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "ynab-import"
-version = "0.0.3"
+version = "0.0.4"
 description = "Automate transaction import troubles to ynab."
 authors = ["demonno <demur.nodia@gmail.com>"]
 license = "MIT"
