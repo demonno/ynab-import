@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from typing import Optional
 
 from dataclasses_json import dataclass_json
 
@@ -20,6 +21,6 @@ class YnabTransaction(Transaction):
     memo: str
     import_id: str
 
-    cleared: str = "cleared"
+    cleared: Optional[str] = None
     approved: bool = False
-    flag_color: str = "red"
+    flag_color: str = "green"

@@ -1,5 +1,6 @@
-from ynab_import.swedbank.transformers import SwedBankTransformer
+import pytest
 
 
+@pytest.mark.skip
 def test_transformer():
     pass

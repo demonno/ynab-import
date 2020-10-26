@@ -19,7 +19,9 @@ class RevolutCSVProvider(CSVProvider):
 
     def read_csv(self, input_file: str) -> List[RevolutTransaction]:
         with open(input_file, "r", encoding="utf8") as f:
-            reader = DataclassReader(f, RevolutTransaction, delimiter=";", quotechar='"')
+            reader = DataclassReader(
+                f, RevolutTransaction, delimiter=";", quotechar='"'
+            )
             reader.map(self.COMPLETED_DATE).to("completed_date")
             reader.map(self.DESCRIPTION).to("description")
             reader.map(self.PAID_OUT_EUR).to("paid_out_eur")

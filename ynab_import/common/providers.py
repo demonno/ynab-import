@@ -6,7 +6,7 @@ class CSVProvider(BaseProvider):
     """Reading data from csv files"""
 
     def read_csv(self, input_file: str):
-        raise NotImplemented
+        raise NotImplementedError
 
 
 class APIProvider(BaseProvider):
