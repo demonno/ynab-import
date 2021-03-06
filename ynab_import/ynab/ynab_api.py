@@ -39,6 +39,4 @@ class YnabApi(YnabClient):
         kwargs.setdefault("timeout", self.timeout)
         kwargs.setdefault("headers", {"Authorization": f"Bearer {self.api_key}"})
 
-        return requests.request(
-            method, urljoin(self.api_url, endpoint), **kwargs,
-        )
+        return requests.request(method, urljoin(self.api_url, endpoint), **kwargs,)
