@@ -4,7 +4,7 @@ from ynab_import.revolut.providers import RevolutCSVProvider
 from ynab_import.revolut.transformers import RevolutTransformer
 from ynab_import.swedbank.providers import SwedbankCSVProvider
 from ynab_import.swedbank.transformers import SwedBankTransformer
-from ynab_import.ynab.providers import YnabBudget
+from ynab_import.ynab.ynab_api import YnabApi
 
 
 @click.command()
@@ -36,6 +36,6 @@ def main(source, read_from, write_to, account_id, budget_id, api_key):
         for i in data:
             print(i)
     elif write_to == "api":
-        yn = YnabBudget(api_key=api_key, budget_id=budget_id)
+        yn = YnabApi(api_key=api_key, budget_id=budget_id)
         yn.create_transactions(data)
     print("done")
