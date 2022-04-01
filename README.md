@@ -1,5 +1,6 @@
 # YNAB - You Need a Budget
 
+[![Tests](https://github.com/demonno/ynab-import/workflows/Test%20Suite/badge.svg)](https://github.com/demonno/ynab-import/actions)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![version](https://img.shields.io/pypi/v/ynab-import.svg)](https://pypi.org/project/ynab-import/)
 [![license](https://img.shields.io/pypi/l/ynab-import)](https://github.com/demonno/ynab-import/blob/master/LICENSE)
