@@ -3,13 +3,11 @@ from datetime import datetime
 
 from dataclass_csv import accept_whitespaces, dateformat
 
-from ynab_import.common.models import Transaction
-
 
 @accept_whitespaces
 @dataclass
 @dateformat("%b %d, %Y ")
-class RevolutTransaction(Transaction):
+class RevolutTransaction:
     completed_date: datetime
     description: str
     paid_out_eur: str

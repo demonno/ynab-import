@@ -1,16 +1,30 @@
-from environs import Env
+from enum import Enum
 
-env = Env()
-env.read_env()
+from pydantic import BaseSettings
 
-INPUT_FILE_PATH = None
-OUTPUT_FILE_PATH = None
 
-SOURCE = env.str("SOURCE")
-READ_FROM = env.str("READ_FROM")
-WRITE_TO = env.str("WRITE_TO")
+class ReaderKind(str, Enum):
+    swedbank_csv = "swedbank_csv"
 
-# Ynab Config
-YNAB_API_KEY = env.str("YNAB_API_KEY")
-YNAB_BUDGET_ID = env.str("YNAB_BUDGET_ID")
-YNAB_ACCOUNT_ID = env.str("YNAB_ACCOUNT_ID")
+
+class WriterKind(str, Enum):
+    ynab_api = "ynab_api"
+    memory = "memory"
+    stdout = "stdout"
+
+
+class Settings(BaseSettings):
+    reader: ReaderKind
+    writer: WriterKind
+    read_from_path: str = ""
+
+    ynab_api_key: str
+    ynab_budget_id: str
+    ynab_account_id: str
+
+    class Config:
+        env_file = ".env"
+        env_file_encoding = "utf-8"
+
+
+settings = Settings()

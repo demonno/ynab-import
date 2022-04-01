@@ -1,4 +1,4 @@
-# YNAB -You Need a Budget
+# YNAB - You Need a Budget
 
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![version](https://img.shields.io/pypi/v/ynab-import.svg)](https://pypi.org/project/ynab-import/)

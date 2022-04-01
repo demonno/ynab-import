@@ -2,7 +2,8 @@ import abc
 from collections import Counter
 from typing import List
 
-from ynab_import.common.models import Transaction, YnabTransaction
+from ynab_import.common.models import YnabTransaction
+from ynab_import.core.interactions import Transaction
 
 
 class Transformer(abc.ABC):
@@ -37,7 +38,5 @@ class Transformer(abc.ABC):
         raise NotImplementedError
 
     @abc.abstractmethod
-    def to_ynab_transactions(
-        self, transactions: List[Transaction]
-    ) -> List[YnabTransaction]:
+    def transform(self, transactions: List[Transaction]) -> List[YnabTransaction]:
         raise NotImplementedError

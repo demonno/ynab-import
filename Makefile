@@ -2,6 +2,8 @@ install:
 	pip install poetry
 	poetry install
 
+update:
+	poetry update
 
 lint:
 	isort --check ynab_import tests

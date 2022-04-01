@@ -30,7 +30,7 @@ class RevolutTransformer(Transformer):
             paid_in_eur=paid_in_eur,
         )
 
-    def to_ynab_transactions(
+    def transform(
         self, transactions: List[RevolutTransaction]
     ) -> List[YnabTransaction]:
         res = []

@@ -1,43 +1,34 @@
 import datetime
 
-from ynab_import.swedbank.models import SwedbankTransaction
-from ynab_import.swedbank.providers import SwedbankCSVProvider
+from ynab_import.core.interactions import Transaction
+from ynab_import.swedbank.providers import SwedbankCSVReader
 
 
-def test_csv_provider():
-    sw = SwedbankCSVProvider()
-    data = sw.read_csv("tests/swedbank/swedbank.csv")
-    assert len(data) == 8
-    assert data[0] == SwedbankTransaction(
-        client_account="EE000000000000000000",
+def test_read_transaction_data_from_csv():
+    sw = SwedbankCSVReader(source_file_path="tests/swedbank/data/swedbank.csv")
+    transactions = sw.read_transactions()
+    assert len(transactions) == 4
+    assert transactions[0] == Transaction(
         date=datetime.datetime(2018, 9, 4, 0, 0),
-        memo="Opening balance",
-        amount="1000,00",
-        debit_credit="K",
-        payee="",
+        description="Invoice No: 0000000000",
+        amount=-20000,
+        payee_name="EESTI ENERGIA AS",
     )
-    assert data[1] == SwedbankTransaction(
-        client_account="EE000000000000000000",
-        date=datetime.datetime(2018, 9, 4, 0, 0),
-        memo="Invoice No: 0000000000",
-        amount="20,00",
-        debit_credit="D",
-        payee="EESTI ENERGIA AS",
-    )
-    assert data[2] == SwedbankTransaction(
-        client_account="EE000000000000000000",
+    assert transactions[1] == Transaction(
         date=datetime.datetime(2018, 9, 5, 0, 0),
-        memo="Invoice No: 00000000",
-        amount="50,00",
-        debit_credit="D",
-        payee="MY FITNESS AS",
+        description="Invoice No: 00000000",
+        amount=-50000,
+        payee_name="MY FITNESS AS",
     )
-    assert data[3] == SwedbankTransaction(
-        client_account="EE000000000000000000",
+    assert transactions[2] == Transaction(
         date=datetime.datetime(2018, 9, 5, 0, 0),
-        memo="Internet payment",
-        amount="30,00",
-        debit_credit="D",
-        payee="TELIA EESTI AS",
+        description="Internet payment",
+        amount=-30000,
+        payee_name="TELIA EESTI AS",
     )
-    # todo assert other rows
+    assert transactions[3] == Transaction(
+        date=datetime.datetime(2018, 9, 5, 0, 0),
+        description="Private Payment",
+        amount=50000,
+        payee_name="John Doe",
+    )

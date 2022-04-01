@@ -11,10 +11,9 @@ keywords = ["ynab", "api", "import"]
 [tool.poetry.dependencies]
 python = "^3.7"
 dataclass-csv = "^1.1"
-environs = "^7.1"
-dataclasses-json = "^0.3.6"
-environ = "^1.0"
-click = "^7.1"
+typer = "^0.4.0"
+pydantic = "^1.8.2"
+python-dotenv = "^0.19.2"
 
 [tool.poetry.dev-dependencies]
 isort = "^5.4.2"
@@ -36,7 +35,6 @@ ynab-import = "ynab_import.main:main"
 profile = "black"
 combine_as_imports = true
 src_paths = ["ynab_import", "tests"]
-
 
 [build-system]
 requires = ["poetry>=0.12"]

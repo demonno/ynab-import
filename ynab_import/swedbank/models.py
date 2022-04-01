@@ -3,13 +3,11 @@ from datetime import datetime
 
 from dataclass_csv import accept_whitespaces, dateformat
 
-from ynab_import.common.models import Transaction
-
 
 @accept_whitespaces
 @dataclass
 @dateformat("%d.%m.%Y")
-class SwedbankTransaction(Transaction):
+class SwedbankTransaction:
     client_account: str
     date: datetime
     memo: str
