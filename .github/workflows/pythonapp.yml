@@ -27,10 +27,10 @@ jobs:
         poetry-version: ${{ matrix.poetry-version }}
     - name: "Install dependencies"
       run: |
-        which python
+        poetry env info
         poetry install
     - name: "Run tests"
       run: |
-        which python
+        poetry env info
         poetry show
         pytest tests
