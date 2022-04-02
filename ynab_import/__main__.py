@@ -17,7 +17,9 @@ def cli(
     reader = create_reader(reader)
     writer = create_writer(writer)
     count = import_transactions(read=reader, write=writer)
-    message = f"Transaction(s) imported: N {count} " + typer.style("good", fg=typer.colors.GREEN, bold=True)
+    message = f"Transaction(s) imported: N {count} " + typer.style(
+        "good", fg=typer.colors.GREEN, bold=True
+    )
     typer.echo(message)
 
 

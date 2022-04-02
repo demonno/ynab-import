@@ -4,6 +4,7 @@ import pytest
 
 from ynab_import.common.transformers import Transformer
 
+
 @pytest.mark.skip("Disable refactoring is done")
 def test_base_transformer_amount():
     tr = Transformer(account_id=str(uuid.uuid4()))

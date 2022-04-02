@@ -21,14 +21,12 @@ def create_writer(writer: WriterKind) -> IWriteRepository:
 def _create_ynab_api_reader():
     http_client = (
         RequestsClient()
-            .with_base_url("https://api.youneedabudget.com/v1/")
-            .with_timeout(5.0)
-            .with_api_key_auth(settings.ynab_api_key)
+        .with_base_url("https://api.youneedabudget.com/v1/")
+        .with_timeout(5.0)
+        .with_api_key_auth(settings.ynab_api_key)
     )
     return YnabAPIBasedRepository(
         http_client=http_client,
         budget_id=settings.ynab_budget_id,
         account_id=settings.ynab_account_id,
     )
-
-
