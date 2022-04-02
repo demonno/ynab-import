@@ -1,7 +1,4 @@
-import typer
-
 from ynab_import.common.settings import ReaderKind, WriterKind, settings
-from ynab_import.core import import_transactions
 from ynab_import.core.interactions import IReadRepository, IWriteRepository
 from ynab_import.infra.http import RequestsClient
 from ynab_import.infra.ynab import YnabAPIBasedRepository
@@ -31,20 +28,3 @@ def create_writer(writer: WriterKind) -> IWriteRepository:
     raise NotImplementedError(f"{writer} writer is not implemented.")
 
 
-app = typer.Typer(add_completion=False)
-
-
-@app.command()
-def cli(
-    reader: ReaderKind = ReaderKind.swedbank_csv,
-    writer: WriterKind = WriterKind.ynab_api,
-):
-    reader = create_reader(reader)
-    writer = create_writer(writer)
-    count = import_transactions(read=reader, write=writer)
-    message = f"Transaction(s) imported: N {count} " + typer.style("good", fg=typer.colors.GREEN, bold=True)
-    typer.echo(message)
-
-
-def main():
-    app()
