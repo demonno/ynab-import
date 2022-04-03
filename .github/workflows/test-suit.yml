@@ -43,4 +43,5 @@ jobs:
       uses: abatilo/actions-poetry@v2.0.0
     - name: "Run safety"
       run: |
+        poetry add safety
         poetry run pip freeze | poetry run safety check --stdin
