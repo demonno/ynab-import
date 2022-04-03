@@ -7,7 +7,7 @@ on:
     branches: ["master"]
 
 jobs:
-  tests:
+  test:
     name: "Python ${{ matrix.python-version }} ${{ matrix.os }}"
     runs-on: "${{ matrix.os }}"
     strategy:
@@ -31,4 +31,39 @@ jobs:
     - name: "Run tests"
       run: |
         poetry run pytest tests --cov=ynab_import
-
+  securiy:
+    name: "Python safety check"
+    runs-on: "ubuntu-latest"
+    steps:
+    - uses: "actions/checkout@v2"
+    - uses: "actions/setup-python@v2"
+      with:
+        python-version: "3.8"
+    - name: Setup poetry
+      uses: abatilo/actions-poetry@v2.0.0
+    - name: "Run safety"
+      run: |
+        poetry add safety
+        poetry run pip freeze | poetry run safety check --stdin
+  lint:
+    name: "Python linter checks"
+    runs-on: "ubuntu-latest"
+    steps:
+    - uses: "actions/checkout@v2"
+    - uses: "actions/setup-python@v2"
+      with:
+        python-version: "3.8"
+    - name: Setup poetry
+      uses: abatilo/actions-poetry@v2.0.0
+    - name: "Install dependencies"
+      run: |
+        poetry install
+    - name: "Run isort"
+      run: |
+        poetry run isort . --check
+    - name: "Run black"
+      run: |
+        poetry run black --check ynab_import tests
+    - name: "Run flake8"
+      run: |
+        poetry run flake8 ynab_import tests

@@ -2,9 +2,9 @@
 """
 import typer
 
-from ynab_import.setup import create_reader, create_writer
 from ynab_import.common.settings import ReaderKind, WriterKind
 from ynab_import.core import import_transactions
+from ynab_import.setup import create_reader, create_writer
 
 app = typer.Typer(add_completion=False)
 
