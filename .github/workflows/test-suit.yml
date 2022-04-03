@@ -57,7 +57,7 @@ jobs:
       uses: abatilo/actions-poetry@v2.0.0
     - name: "Run isort"
       run: |
-        poetry run isort --check ynab_import tests
+        poetry run isort . --check
     - name: "Run black"
       run: |
         poetry run black --check ynab_import tests
