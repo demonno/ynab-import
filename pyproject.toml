@@ -6,7 +6,7 @@ license = "MIT"
 name = "ynab-import"
 readme = "README.md"
 repository = "https://github.com/demonno/ynab-import"
-version = "0.0.7"
+version = "0.0.8"
 
 [tool.poetry.urls]
 "Bug Tracker" = "https://github.com/demonno/ynab-import/issues"
