@@ -45,3 +45,22 @@ jobs:
       run: |
         poetry add safety
         poetry run pip freeze | poetry run safety check --stdin
+  lint:
+    name: "Python linter checks"
+    runs-on: "ubuntu-latest"
+    steps:
+    - uses: "actions/checkout@v2"
+    - uses: "actions/setup-python@v2"
+      with:
+        python-version: "3.8"
+    - name: Setup poetry
+      uses: abatilo/actions-poetry@v2.0.0
+    - name: "Run isort"
+      run: |
+        poetry run isort --check ynab_import tests
+    - name: "Run black"
+      run: |
+        poetry run black --check ynab_import tests
+    - name: "Run flake8"
+      run: |
+        poetry run flake8 ynab_import tests

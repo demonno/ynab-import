@@ -29,7 +29,8 @@ class YnabAPIBasedRepository:
 
     def _to_ynab(self, transaction: Transaction) -> YnabTransaction:
         import_id = "YNAB:{milliunit_amount}:{iso_date}".format(
-            milliunit_amount=transaction.amount, iso_date=transaction.date.isoformat(),
+            milliunit_amount=transaction.amount,
+            iso_date=transaction.date.isoformat(),
         )
 
         return YnabTransaction(
