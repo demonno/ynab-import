@@ -1,7 +1,7 @@
 [tool.poetry]
 authors = ["demonno <demur.nodia@gmail.com>"]
 description = "Automate transaction import troubles to ynab."
-keywords = ["ynab", "api", "import"]
+keywords = ["ynab", "api", "import", "cli"]
 license = "MIT"
 name = "ynab-import"
 readme = "README.md"
