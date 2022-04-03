@@ -1,42 +1,45 @@
 [tool.poetry]
-name = "ynab-import"
-version = "0.0.5"
-description = "Automate transaction import troubles to ynab."
 authors = ["demonno <demur.nodia@gmail.com>"]
+description = "Automate transaction import troubles to ynab."
+keywords = ["ynab", "api", "import"]
 license = "MIT"
+name = "ynab-import"
 readme = "README.md"
 repository = "https://github.com/demonno/ynab-import"
-keywords = ["ynab", "api", "import"]
+version = "0.0.5"
+
+[tool.poetry.urls]
+"Bug Tracker" = "https://github.com/demonno/ynab-import/issues"
 
 [tool.poetry.dependencies]
-python = "^3.7"
 dataclass-csv = "^1.1"
-typer = "^0.4.0"
 pydantic = "^1.8.2"
+python = "^3.7"
 python-dotenv = "^0.19.2"
+typer = "^0.4.0"
 
 [tool.poetry.dev-dependencies]
+black = "^19.10b0"
+bump2version = "^1.0.1"
+coverage = "^6.3.2"
+flake8 = "^3.8.4"
+hypothesis = "^6.4"
 isort = "^5.4.2"
 mypy = "^0.782"
-black = "^19.10b0"
-flake8 = "^3.8.4"
-bump2version = "^1.0.1"
-safety = "^1.9.0"
 pytest = "^6.1.1"
 pytest-cov = "^2.10.1"
 pytest-sugar = "^0.9.4"
-hypothesis = "^6.4"
 requests-mock = "^1.8"
-coverage = "^6.3.2"
+safety = "^1.9.0"
 
 [tool.poetry.scripts]
 ynab-import = "ynab_import.__main__:app"
 
 [tool.isort]
-profile = "black"
 combine_as_imports = true
+profile = "black"
 src_paths = ["ynab_import", "tests"]
 
 [build-system]
-requires = ["poetry>=0.12"]
 build-backend = "poetry.masonry.api"
+requires = ["poetry>=0.12"]
