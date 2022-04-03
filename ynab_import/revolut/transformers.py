@@ -40,9 +40,7 @@ class RevolutTransformer(Transformer):
             tr = self.prepare_data(tr)
             amount = tr.paid_in_eur or -1 * tr.paid_out_eur
             import_id = self.generate_import_id(
-                self.account_id,
-                amount,
-                tr.completed_date.isoformat(),
+                self.account_id, amount, tr.completed_date.isoformat(),
             )
             res.append(
                 YnabTransaction(
