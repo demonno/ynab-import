@@ -1,5 +1,4 @@
-name: Publish
-
+name: Publish to Test PyPI
 on:
   push:
     tags:
@@ -11,18 +10,13 @@ jobs:
     steps:
       - uses: "actions/checkout@v2"
       - uses: "actions/setup-python@v2"
-        with:
-          python-version: "3.8"
       - uses: "abatilo/actions-poetry@v2.0.0"
-        with:
-          poetry-version: "1.1.13"
       - name: Configure poetry
         run: poetry config virtualenvs.in-project true
       - name: Install Dependencies
         run: poetry install
-      - name: Publish
-        env:
-          PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
+      - name: Publish package
         run: |
-          poetry config pypi-token.pypi $PYPI_TOKEN
+          poetry config repositories.testpypi https://test.pypi.org/legacy/
+          poetry config pypi-token.testpypi ${{ secrets.TEST_PYPI_API_KEY }}
           poetry publish --build
