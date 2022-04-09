@@ -13,7 +13,10 @@ In Ynab you have budgets, each budget has one or more accounts with transactions
     pip install ynab-import
 
 ## Configuration file
-config.env
+
+Create config file 
+
+    example.env
 
 ```ini
 READER=swedbank_csv
@@ -25,12 +28,24 @@ YNAB_BUDGET_ID==**********
 YNAB_ACCOUNT_ID==**********
 ```
 
-## Check config
+# CLI
 
-   ynab-import --config example.env check
+## Help command
+
+    ynab-import --help
+
+## Check config command
+
+This command will just print provided configuration 
+
+    ynab-import --config example.env check
+
+## Import transactions 
+
+    ynab-import --config example.emv import
 
 
-##### Ynab API KEY
+# YNAB API KEY
 To set up API integration with YNAB you need to create `Personal Access Token`.
 
 Go to `https://app.youneedabudget.com/settings/developer` and click `New Token`
