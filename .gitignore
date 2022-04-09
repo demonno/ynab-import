@@ -77,3 +77,4 @@ poetry.lock
 
 #env
 .env
+*.yaml
