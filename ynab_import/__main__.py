@@ -1,6 +1,5 @@
 """Invoke as `ynab-import' or `python -m ynab_import'.
 """
-import json
 from pathlib import Path
 from pprint import pprint
 
@@ -8,8 +7,6 @@ import typer
 from pydantic import ValidationError
 
 from ynab_import.common import ReaderKind, Settings, WriterKind
-from ynab_import.core import import_transactions
-from ynab_import.setup import create_reader, create_writer
 
 app = typer.Typer()
 state = {"verbose": False}
