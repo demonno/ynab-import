@@ -8,73 +8,44 @@
 Budgeting Tool helps you plan and manage your personal budget.
 In Ynab you have budgets, each budget has one or more accounts with transactions.
 
-## Run tests
+## Install
 
-    python -m pytest
+    pip install ynab-import
 
-## How to run
+## Configuration file
 
-* Clone project
-* Create .env file in project root
+Create config file 
+
+    example.env
 
 ```ini
-SOURCE=revolut
-READ_FROM=../statement.csv
-WRITE_TO=api
+READER=swedbank_csv
+WRITER=ynab_api
+READ_FROM_PATH=...
 
-YNAB_API_KEY=
-YNAB_BUDGET_ID=
+YNAB_API_key=**********
+YNAB_BUDGET_ID==**********
+YNAB_ACCOUNT_ID==**********
+```
 
-# ISIC
-#YNAB_ACCOUNT_ID=739410aa-0ef1-4b3e-a488-4ffe5ca3209a
+# CLI
 
-# Checking
-YNAB_ACCOUNT_ID=
-# Saving
-#YNAB_ACCOUNT_ID=
-```  
+## Help command
 
-* Run `main.py` 
+    ynab-import --help
 
-### Developer API
+## Check config command
 
-* https://api.youneedabudget.com/    
-    
-    
-#User API
- 
-     ynab-import --s swedbank -r api -w api
-     ynab-import --s swedbank -r file.csv -w file.csv
-     ynab-import --s swedbank -r file.csv -w api
- 
- Some default/extra configurations required
- 
- * read-from file
-    * INPUT_FILE_PATH [default (~/{bank}.csv) home@Linux] (actual full file path required)
- * read-from api
-    * appropriate bank credentials and setup required
-    * Raise Not Supported
- * write to file 
-    * OUTPUT_FILE_PATH [default (~/{bank}-ynab-{date-time}.csv) home@Linux] (add file name only if not specified)
- * write to api 
-    * YNAB_API_KEY
-    * YNAB_BUDGET_ID
+This command will just print provided configuration 
 
-YNAB_API_BASE_URL="https://api.youneedabudget.com/v1/"
+    ynab-import --config example.env check
+
+## Import transactions 
+
+    ynab-import --config example.emv import
 
 
+# YNAB API KEY
+To set up API integration with YNAB you need to create `Personal Access Token`.
 
-#### User Wiki
-
-
-##### Ynab 
-
-####### Import Manually
-
-Its posisble to import Csv File manually
-
-
-####### Import Using Ynab API
-To set up this integration you need to create `Personal Access Token`.
-
-Go to `https://app.youneedabudget.com/settings/developer` and click `New Token` 
+Go to `https://app.youneedabudget.com/settings/developer` and click `New Token`

@@ -21,10 +21,3 @@ class Settings(BaseSettings):
     ynab_api_key: str
     ynab_budget_id: str
     ynab_account_id: str
-
-    class Config:
-        env_file = ".env"
-        env_file_encoding = "utf-8"
-
-
-settings = Settings()

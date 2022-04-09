@@ -76,4 +76,4 @@ poetry.lock
 .mypy_cache
 
 #env
-.env
+*.env
