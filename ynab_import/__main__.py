@@ -1,12 +1,13 @@
 """Invoke as `ynab-import' or `python -m ynab_import'.
 """
-from pydantic import ValidationError
-import typer
+import json
+from pathlib import Path
 from pprint import pprint
 
-from pathlib import Path
-import json
-from ynab_import.common import ReaderKind, WriterKind, Settings
+import typer
+from pydantic import ValidationError
+
+from ynab_import.common import ReaderKind, Settings, WriterKind
 from ynab_import.core import import_transactions
 from ynab_import.setup import create_reader, create_writer
 
@@ -23,7 +24,7 @@ def main(
         dir_okay=False,
         writable=False,
         readable=True,
-        resolve_path=True
+        resolve_path=True,
     ),
     verbose: bool = False,
 ):
@@ -39,7 +40,6 @@ def main(
         typer.echo(exc)
 
 
-
 @app.command()
 def check():
     """
@@ -47,7 +47,6 @@ def check():
     """
     settings = state["config"]
     pprint(settings.dict())
-
 
 
 @app.command()

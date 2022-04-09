@@ -1,3 +1,3 @@
-from .settings import Settings, ReaderKind, WriterKind
+from .settings import ReaderKind, Settings, WriterKind
 
 __all__ = ["Settings", "ReaderKind", "WriterKind"]

@@ -1,5 +1,4 @@
-from ynab_import.common import ReaderKind, WriterKind
-from ynab_import.common import Settings
+from ynab_import.common import ReaderKind, Settings, WriterKind
 from ynab_import.core.interactions import IReadRepository, IWriteRepository
 from ynab_import.infra.http import RequestsClient
 from ynab_import.infra.ynab import YnabAPIBasedRepository
