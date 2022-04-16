@@ -47,7 +47,7 @@ def check():
 
 
 @app.command()
-def read():
+def read() -> None:
     """
     Print transactions from specified source
     """
@@ -56,10 +56,7 @@ def read():
 
 
 @app.command(name="import")
-def cli(
-    reader: ReaderKind,
-    writer: WriterKind,
-):
+def cli() -> None:
     """
     Read/Import transactoins from source to destination
     """
