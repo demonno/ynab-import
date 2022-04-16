@@ -1,7 +1,7 @@
 import datetime
 
 from ynab_import.core.interactions import Transaction
-from ynab_import.swedbank.providers import SwedbankCSVReader
+from ynab_import.infra import SwedbankCSVReader
 
 
 def test_read_transaction_data_from_csv():

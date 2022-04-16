@@ -1,8 +1,8 @@
-from ynab_import.common import ReaderKind, Settings, WriterKind
+from ynab_import.infra import SwedbankCSVReader
+from ynab_import.settings import ReaderKind, Settings, WriterKind
 from ynab_import.core.interactions import IReadRepository, IWriteRepository
 from ynab_import.infra.http import RequestsClient
 from ynab_import.infra.ynab import YnabAPIBasedRepository
-from ynab_import.swedbank.providers import SwedbankCSVReader
 
 
 def create_reader(settings: Settings, reader: ReaderKind) -> IReadRepository:

@@ -5,7 +5,7 @@ from dataclass_csv import DataclassReader
 
 from ynab_import.core.providers import CSVReader
 from ynab_import.core.interactions import Transaction
-from ynab_import.swedbank.models import SwedbankTransaction
+from ynab_import.infra.swedbank.models import SwedbankTransaction
 
 
 @dataclass
