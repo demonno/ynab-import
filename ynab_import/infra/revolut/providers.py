@@ -4,7 +4,7 @@ from dataclass_csv import DataclassReader
 
 from ynab_import.core.providers import CSVReader
 from ynab_import.core.interactions import Transaction
-from ynab_import.revolut.models import RevolutTransaction
+from ynab_import.infra.revolut.models import RevolutTransaction
 
 
 class RevolutCSVReader(CSVReader):

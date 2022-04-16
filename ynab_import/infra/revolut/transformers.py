@@ -3,7 +3,7 @@ from typing import List
 
 from ynab_import.core.models import YnabTransaction
 from ynab_import.core.transformers import Transformer
-from ynab_import.revolut.models import RevolutTransaction
+from ynab_import.infra.revolut.models import RevolutTransaction
 
 
 class RevolutTransformer(Transformer):
