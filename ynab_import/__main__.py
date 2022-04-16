@@ -2,14 +2,22 @@
 """
 from pathlib import Path
 from pprint import pprint
+from typing import Optional
 
 import typer
 from pydantic import ValidationError
 
-from ynab_import.common import ReaderKind, Settings, WriterKind
+from ynab_import import __version__
+from ynab_import.common import Settings
 
 app = typer.Typer()
 state = {"verbose": False}
+
+
+def version_callback(value: bool):
+    if value:
+        typer.echo(f"CLI Version: {__version__}")
+        raise typer.Exit()
 
 
 @app.callback()
@@ -24,6 +32,9 @@ def main(
         resolve_path=True,
     ),
     verbose: bool = False,
+    version: Optional[bool] = typer.Option(
+        None, "--version", callback=version_callback
+    ),
 ):
     """
     CLI for managing read/transform/import operatoins
