@@ -14,7 +14,7 @@ In Ynab you have budgets, each budget has one or more accounts with transactions
 
 ## Configuration file
 
-Create config file 
+Create config file
 
     example.env
 
@@ -34,15 +34,13 @@ YNAB_ACCOUNT_ID==**********
 
     ynab-import --help
 
-## Check config command
-
-This command will just print provided configuration 
+## Check configuration
 
     ynab-import --config example.env check
 
-## Import transactions 
+## Import transactions
 
-    ynab-import --config example.emv import
+    ynab-import --config example.env import
 
 
 # YNAB API KEY

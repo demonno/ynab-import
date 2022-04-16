@@ -1,20 +1,20 @@
-install:
+install: # Install dependencies
 	pip install poetry
 	poetry install
 
-update:
-	poetry update
+activate: # Activate python enviroment
+	poetry shell
 
-lint:
+lint: # Check code quality
 	isort --check ynab_import tests
 	black --check ynab_import tests
 	flake8 ynab_import tests
 	#mypy ynab_import tests
 	safety check --full-report
 
-fmt:
+fmt: # Format code
 	isort ynab_import tests
 	black ynab_import tests
 
-test:
+test: # Run tests
 	python -m pytest
