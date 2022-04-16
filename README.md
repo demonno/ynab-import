@@ -42,6 +42,10 @@ YNAB_ACCOUNT_ID==**********
 
     ynab-import --config example.env import
 
+# Run as a python module
+
+    python -m ynab_import --help
+
 
 # YNAB API KEY
 To set up API integration with YNAB you need to create `Personal Access Token`.
