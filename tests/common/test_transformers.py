@@ -2,7 +2,7 @@ import uuid
 
 import pytest
 
-from ynab_import.common.transformers import Transformer
+from ynab_import.core.transformers import Transformer
 
 
 @pytest.mark.skip("Disable refactoring is done")

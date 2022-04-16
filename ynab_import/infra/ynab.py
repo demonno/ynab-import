@@ -4,7 +4,7 @@ from typing import List
 
 from requests import Response
 
-from ynab_import.common.models import YnabTransaction
+from ynab_import.core.models import YnabTransaction
 from ynab_import.core.interactions import Transaction
 from ynab_import.infra.http import HttpClient
 

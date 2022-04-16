@@ -2,7 +2,7 @@ import abc
 from collections import Counter
 from typing import List
 
-from ynab_import.common.models import YnabTransaction
+from ynab_import.core.models import YnabTransaction
 from ynab_import.core.interactions import Transaction
 
 

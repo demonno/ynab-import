@@ -1,8 +1,8 @@
 from dataclasses import replace
 from typing import List
 
-from ynab_import.common.models import YnabTransaction
-from ynab_import.common.transformers import Transformer
+from ynab_import.core.models import YnabTransaction
+from ynab_import.core.transformers import Transformer
 from ynab_import.revolut.models import RevolutTransaction
 
 

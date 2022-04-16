@@ -6,7 +6,7 @@ import typer
 from pydantic import ValidationError
 
 from ynab_import import __version__
-from ynab_import.common import Settings
+from ynab_import.settings import Settings
 
 app = typer.Typer(name="Ynab Import CLI")
 state = {"verbose": False}
