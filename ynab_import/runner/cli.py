@@ -6,7 +6,9 @@ import typer
 from pydantic import ValidationError
 
 from ynab_import import __version__
+from ynab_import.core import import_transactions
 from ynab_import.settings import Settings
+from ynab_import.setup import create_writer, create_reader
 
 app = typer.Typer(name="Ynab Import CLI")
 state = {"verbose": False}
@@ -62,7 +64,23 @@ def read() -> None:
     """
     settings = state["config"]
     typer.echo(f"Reading transactions with conifg {settings.dict()}")
+    typer.echo(f"Transactions loaded from reader")
 
+    reader = create_reader(settings)
+    typer.echo(reader.read_transactions())
+
+@app.command()
+def import_transactions() -> None:
+    """
+    Print transactions from specified source
+    """
+    settings = state["config"]
+    typer.echo("Importing transactions")
+
+    reader = create_reader(settings)
+    writer = create_writer(settings)
+
+    import_transactions(reader, writer)
 
 @app.command(name="import")
 def cli() -> None:
@@ -71,3 +89,5 @@ def cli() -> None:
     """
     settings = state["config"]
     typer.echo(f"Import transactions with conifg {settings.dict()}")
+
+

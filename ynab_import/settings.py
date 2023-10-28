@@ -5,6 +5,7 @@ from pydantic import BaseSettings
 
 class ReaderKind(str, Enum):
     swedbank_csv = "swedbank_csv"
+    tbc_csv = "tbc_csv"
 
 
 class WriterKind(str, Enum):
