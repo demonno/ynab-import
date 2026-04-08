@@ -1,8 +1,11 @@
 from dataclasses import dataclass
+from datetime import datetime
 from typing import Any, Dict, Protocol, TypeVar
 
 import requests
 from requests import Response
+
+from ynab_import.core.interactions import Transaction
 
 T = TypeVar("T")
 

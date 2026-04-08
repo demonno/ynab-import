@@ -60,7 +60,7 @@ def check():
 @app.command()
 def read() -> None:
     """
-    Print transactions from specified source
+    Read transactions from a specified source and print in STD out
     """
     settings = state["config"]
     typer.echo(f"Reading transactions with conifg {settings.dict()}")
@@ -69,10 +69,11 @@ def read() -> None:
     reader = create_reader(settings)
     typer.echo(reader.read_transactions())
 
+
 @app.command()
-def import_transactions() -> None:
+def read_write() -> None:
     """
-    Print transactions from specified source
+    Read transactions from a specified source and write to a specified destination
     """
     settings = state["config"]
     typer.echo("Importing transactions")
@@ -89,5 +90,3 @@ def cli() -> None:
     """
     settings = state["config"]
     typer.echo(f"Import transactions with conifg {settings.dict()}")
-
-

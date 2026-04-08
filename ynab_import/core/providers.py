@@ -7,14 +7,14 @@ class CSVReader(ABC):  # pragma: no cover
         pass
 
     @staticmethod
-    def _to_milliunit(amount: float) -> int:
+    def to_milliunit(amount: float) -> int:
         return int(amount * 1000)
 
     @staticmethod
-    def _to_float(amount: str) -> float:
+    def to_float(amount: str) -> float:
         return float(amount.replace(",", "."))
 
     def to_amount(self, amount: str) -> int:
         if not amount.strip():
             return 0
-        return self._to_milliunit(self._to_float(amount))
+        return self.to_milliunit(self.to_float(amount))

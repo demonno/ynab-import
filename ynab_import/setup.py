@@ -10,7 +10,9 @@ def create_reader(settings: Settings) -> IReadRepository:
     if settings.reader.value == ReaderKind.swedbank_csv:
         return SwedbankCSVReader(source_file_path=settings.read_from_path)
     if settings.reader.value == ReaderKind.tbc_csv:
-        return TBCCSVReader(source_file_path=settings.read_from_path)
+        return TBCCSVReader(
+            source_file_path=settings.read_from_path
+        )
 
     raise NotImplementedError(f"{settings.reader} reader is not implemented.")
 
