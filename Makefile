@@ -1,20 +1,31 @@
-install: # Install dependencies
-	pip install poetry
-	poetry install
+.PHONY: install lint fmt test clean check help
 
-activate: # Activate python enviroment
-	poetry shell
+help:
+	@echo "Available commands:"
+	@echo "  make install    Install dependencies"
+	@echo "  make lint       Check code quality"
+	@echo "  make fmt        Format code"
+	@echo "  make test       Run tests"
+	@echo "  make check      Run checks (lint + type)"
+	@echo "  make clean      Remove build artifacts"
 
-lint: # Check code quality
-	isort --check ynab_import tests
-	black --check ynab_import tests
-	flake8 ynab_import tests
-	#mypy ynab_import tests
-	safety check --full-report
+install:
+	uv sync
 
-fmt: # Format code
-	isort ynab_import tests
-	black ynab_import tests
+lint:
+	uv run ruff check ynab_import tests
 
-test: # Run tests
-	python -m pytest
+fmt:
+	uv run ruff format ynab_import tests
+	uv run ruff check ynab_import tests --fix
+
+test:
+	uv run pytest tests/ -v
+
+check: lint
+	uv run mypy ynab_import
+
+clean:
+	find . -type d -name __pycache__ -exec rm -rf {} + 2>/dev/null || true
+	find . -type f -name "*.pyc" -delete
+	rm -rf .pytest_cache .coverage htmlcov dist build *.egg-info
