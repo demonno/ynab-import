@@ -28,10 +28,7 @@ class YnabAPIBasedRepository:
         return response.status_code
 
     def _to_ynab(self, transaction: Transaction) -> YnabTransaction:
-        import_id = "YNAB:{milliunit_amount}:{iso_date}".format(
-            milliunit_amount=transaction.amount,
-            iso_date=transaction.date.isoformat(),
-        )
+        import_id = f"YNAB:{transaction.amount}:{transaction.date.isoformat()}"
 
         return YnabTransaction(
             account_id=self.account_id,

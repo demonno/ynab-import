@@ -21,10 +21,8 @@ class RevolutCSVReader(CSVReader):
     SKIP_KEYWORDS = ["Metal Cashback"]
 
     def read_transactions(self, input_file: str) -> List[Transaction]:
-        with open(input_file, "r", encoding="utf8") as f:
-            reader = DataclassReader(
-                f, RevolutTransaction, delimiter=",", quotechar='"'
-            )
+        with open(input_file, encoding="utf8") as f:
+            reader = DataclassReader(f, RevolutTransaction, delimiter=",", quotechar='"')
             reader.map(self.COMPLETED_DATE).to("completed_date")
             reader.map(self.DESCRIPTION).to("description")
             reader.map(self.PAID_OUT_EUR).to("paid_out_eur")
@@ -36,9 +34,7 @@ class RevolutCSVReader(CSVReader):
             reader.map(self.NOTES).to("notes")
             transactions = list(reader)
 
-        return [
-            self._make(tr) for tr in transactions if tr.memo not in self.SKIP_KEYWORDS
-        ]
+        return [self._make(tr) for tr in transactions if tr.memo not in self.SKIP_KEYWORDS]
 
     def _make(self, transaction: RevolutTransaction) -> Transaction:
         amount = self.to_amount(transaction.amount)

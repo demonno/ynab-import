@@ -1,18 +1,14 @@
 from dataclasses import dataclass
-from datetime import datetime
 from typing import Any, Dict, Protocol, TypeVar
 
 import requests
 from requests import Response
 
-from ynab_import.core.interactions import Transaction
-
 T = TypeVar("T")
 
 
 class HttpClient(Protocol[T]):
-    def post(self, endpoint: str, *, json: Dict[str, Any]) -> T:
-        ...
+    def post(self, endpoint: str, *, json: Dict[str, Any]) -> T: ...
 
 
 @dataclass
@@ -43,7 +39,7 @@ class RequestsClient:
         return self
 
     def request(self, method: str, endpoint: str, **kwargs: Any) -> Response:
-        url = f'{self.base_url.rstrip("/")}/{endpoint.lstrip("/")}'
+        url = f"{self.base_url.rstrip('/')}/{endpoint.lstrip('/')}"
         return requests.request(method, url, **kwargs, **self.kwargs)
 
     def post(self, endpoint: str, *, json: Dict[str, Any]) -> Response:

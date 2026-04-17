@@ -5,7 +5,7 @@ from ynab_import.infra.tbc.providers import TBCCSVReader
 
 
 def test_read_transaction_data_from_csv():
-    reader = TBCCSVReader(source_file_path="data/tbc.csv", exchange_rate=2.9112)
+    reader = TBCCSVReader(source_file_path="tests/tbc/data/tbc.csv", exchange_rate=2.9112)
     transactions = reader.read_transactions()
 
     assert len(transactions) == 7

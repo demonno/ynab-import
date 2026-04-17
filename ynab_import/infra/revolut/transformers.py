@@ -13,13 +13,9 @@ class RevolutTransformer(Transformer):
 
     def prepare_data(self, transaction: RevolutTransaction) -> RevolutTransaction:
         paid_out_eur = (
-            self.ynab_amount(transaction.paid_out_eur)
-            if transaction.paid_out_eur
-            else ""
+            self.ynab_amount(transaction.paid_out_eur) if transaction.paid_out_eur else ""
         )
-        paid_in_eur = (
-            self.ynab_amount(transaction.paid_in_eur) if transaction.paid_in_eur else ""
-        )
+        paid_in_eur = self.ynab_amount(transaction.paid_in_eur) if transaction.paid_in_eur else ""
         description = transaction.description.strip()
         notes = transaction.notes.strip()
         return replace(
@@ -30,9 +26,7 @@ class RevolutTransformer(Transformer):
             paid_in_eur=paid_in_eur,
         )
 
-    def transform(
-        self, transactions: List[RevolutTransaction]
-    ) -> List[YnabTransaction]:
+    def transform(self, transactions: List[RevolutTransaction]) -> List[YnabTransaction]:
         res = []
         for tr in transactions:
             if tr.description.strip() in self.SKIP_KEYWORDS:

@@ -15,7 +15,7 @@ class TBCCSVReader(CSVReader):
     exchange_rate: float = 2.9112
 
     def read_transactions(self) -> List[Transaction]:
-        with open(self.source_file_path, "r", encoding="utf8") as f:
+        with open(self.source_file_path, encoding="utf8") as f:
             data = csv.DictReader(f, delimiter=",")
             transactions: list[TBCTransaction] = []
             # SKIP the first row of headers(English Version)
@@ -36,7 +36,6 @@ class TBCCSVReader(CSVReader):
         ]
 
     def _to_internal_transaction(self, transaction: TBCTransaction) -> Transaction:
-
         if transaction.paid_in:
             amount_float = self.to_float(transaction.paid_in)
         else:

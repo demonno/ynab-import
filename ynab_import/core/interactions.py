@@ -12,13 +12,11 @@ class Transaction:
 
 
 class IWriteRepository(Protocol):
-    def create_many(self, transactions: List[Transaction]) -> int:
-        ...
+    def create_many(self, transactions: List[Transaction]) -> int: ...
 
 
 class IReadRepository(Protocol):
-    def read_transactions(self) -> List[Transaction]:
-        ...
+    def read_transactions(self) -> List[Transaction]: ...
 
 
 def import_transactions(read: IReadRepository, write: IWriteRepository) -> int:

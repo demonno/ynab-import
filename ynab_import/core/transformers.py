@@ -25,11 +25,7 @@ class Transformer(abc.ABC):
         return self._to_milliunit(self._to_float(amount))
 
     def generate_import_id(self, account_id: str, amount: str, iso_date: str):
-        import_id = "YNAB:{milliunit_amount}:{iso_date}:{occurrence}".format(
-            milliunit_amount=amount,
-            iso_date=iso_date,
-            occurrence=self.counter[(account_id, amount, iso_date)],
-        )
+        import_id = f"YNAB:{amount}:{iso_date}:{self.counter[(account_id, amount, iso_date)]}"
         self.counter[(account_id, amount, iso_date)] += 1
         return import_id
 

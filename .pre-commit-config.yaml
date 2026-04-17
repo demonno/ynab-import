@@ -1,0 +1,39 @@
+# Pre-commit hooks for code quality automation
+# Install: pip install pre-commit && pre-commit install
+# Run manually: pre-commit run --all-files
+
+repos:
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.3.0
+    hooks:
+      - id: ruff
+        args: [--fix]
+      - id: ruff-format
+
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.6.1
+    hooks:
+      - id: mypy
+        additional_dependencies:
+          - types-requests
+          - pydantic-settings
+        args:
+          - --ignore-missing-imports
+          - --python-version=3.8
+        stages: [manual]
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: check-yaml
+      - id: check-added-large-files
+        args: ['--maxkb=1000']
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+
+ci:
+  autofix_commit_msg: 'ci: auto-format code with pre-commit'
+  autofix_prs: true
+  autoupdate_branch: ''
+  autoupdate_commit_msg: 'ci: update pre-commit hooks'
+  autoupdate_schedule: weekly

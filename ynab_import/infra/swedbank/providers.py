@@ -22,10 +22,8 @@ class SwedbankCSVReader(CSVReader):
     source_file_path: str
 
     def read_transactions(self) -> List[Transaction]:
-        with open(self.source_file_path, "r", encoding="utf8") as f:
-            reader = DataclassReader(
-                f, SwedbankTransaction, delimiter=";", quotechar='"'
-            )
+        with open(self.source_file_path, encoding="utf8") as f:
+            reader = DataclassReader(f, SwedbankTransaction, delimiter=";", quotechar='"')
             reader.map(self.CLIENT_ACCOUNT).to("client_account")
             reader.map(self.DATE).to("date")
             reader.map(self.PAYEE).to("payee")
@@ -33,11 +31,7 @@ class SwedbankCSVReader(CSVReader):
             reader.map(self.AMOUNT).to("amount")
             reader.map(self.DEBIT_CREDIT).to("debit_credit")
             swedbank_transactions = list(reader)
-        return [
-            self._make(tr)
-            for tr in swedbank_transactions
-            if tr.memo not in self.SKIP_KEYWORDS
-        ]
+        return [self._make(tr) for tr in swedbank_transactions if tr.memo not in self.SKIP_KEYWORDS]
 
     def _make(self, transaction: SwedbankTransaction) -> Transaction:
         amount = self.to_amount(transaction.amount)
