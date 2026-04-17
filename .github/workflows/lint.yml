@@ -1,0 +1,21 @@
+name: Lint & Type Check
+
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+    branches: [master, main]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v4
+        with:
+          python-version: "3.13"
+      - run: pip install uv
+      - run: uv sync
+      - run: uv run ruff format --check ynab_import tests
+      - run: uv run ruff check ynab_import tests
+      - run: uv run mypy ynab_import
