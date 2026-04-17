@@ -1,6 +1,6 @@
 from enum import Enum
 
-from pydantic import BaseSettings
+from pydantic_settings import BaseSettings
 
 
 class ReaderKind(str, Enum):

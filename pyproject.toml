@@ -1,50 +1,92 @@
-[tool.poetry]
-authors = ["demonno <demur.nodia@gmail.com>"]
-description = "Automate transaction import troubles to ynab."
-keywords = ["ynab", "api", "import", "cli"]
-license = "MIT"
-name = "ynab-import"
-readme = "README.md"
-repository = "https://github.com/demonno/ynab-import"
-version = "0.0.10"
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
-[tool.poetry.urls]
+[project]
+name = "ynab-import"
+version = "0.0.10"
+description = "Automate transaction import troubles to ynab."
+readme = "README.md"
+license = { text = "MIT" }
+authors = [
+    { name = "demonno", email = "demur.nodia@gmail.com" }
+]
+keywords = ["ynab", "api", "import", "cli"]
+requires-python = ">=3.8"
+dependencies = [
+    "dataclass-csv>=1.1",
+    "pydantic[dotenv]>=1.9.0",
+    "pydantic-settings>=2.0.0",
+    "typer>=0.4.1",
+]
+
+[project.urls]
+Repository = "https://github.com/demonno/ynab-import"
 "Bug Tracker" = "https://github.com/demonno/ynab-import/issues"
 
-[tool.poetry.dependencies]
-dataclass-csv = "^1.1"
-pydantic = {extras = ["dotenv"], version = "^1.9.0"}
-python = "^3.8"
-typer = "^0.4.1"
-
-[tool.poetry.dev-dependencies]
-black = "^22.3.0"
-bump2version = "^1.0.1"
-coverage = "^6.3.2"
-flake8 = "^3.8.4"
-hypothesis = "^6.4"
-isort = "^5.4.2"
-mypy = "^1.6.1"
-pytest = "^6.1.1"
-pytest-cov = "^2.10.1"
-pytest-sugar = "^0.9.4"
-requests-mock = "^1.8"
-safety = "^1.9.0"
-
-[tool.poetry.scripts]
+[project.scripts]
 ynab-import = "ynab_import.runner.cli:app"
 
-[tool.isort]
-combine_as_imports = true
-profile = "black"
-src_paths = ["ynab_import", "tests"]
+[dependency-groups]
+dev = [
+    "black>=22.3.0",
+    "bump2version>=1.0.1",
+    "coverage>=6.3.2",
+    "flake8>=3.8.4",
+    "hypothesis>=6.4",
+    "isort>=5.4.2",
+    "mypy>=1.6.1",
+    "pytest>=6.1.1",
+    "pytest-cov>=2.10.1",
+    "pytest-sugar>=0.9.4",
+    "requests-mock>=1.8",
+    "ruff>=0.3.0",
+    "safety>=1.9.0",
+]
 
-[build-system]
-build-backend = "poetry.masonry.api"
-requires = ["poetry>=0.12"]
+[tool.ruff]
+line-length = 100
+target-version = "py38"
+
+[tool.ruff.lint]
+select = [
+    "E",    # pycodestyle errors
+    "W",    # pycodestyle warnings
+    "F",    # Pyflakes
+    "I",    # isort
+    "B",    # flake8-bugbear
+    "C4",   # flake8-comprehensions
+    "UP",   # pyupgrade
+]
+ignore = [
+    "E501",  # line too long (handled by formatter)
+]
+
+[tool.ruff.lint.isort]
+profile = "black"
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
 
 [tool.mypy]
 python_version = "3.8"
 ignore_missing_imports = true
 warn_return_any = true
 warn_unused_configs = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-v --cov=ynab_import --cov-report=term-missing"
+
+[tool.coverage.run]
+source = ["ynab_import"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+]
