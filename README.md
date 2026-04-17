@@ -1,53 +1,39 @@
-# YNAB - You Need a Budget
+# ynab-import
 
-[![Tests](https://github.com/demonno/ynab-import/workflows/Test%20Suite/badge.svg)](https://github.com/demonno/ynab-import/actions)
-[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
-[![version](https://img.shields.io/pypi/v/ynab-import.svg)](https://pypi.org/project/ynab-import/)
-[![license](https://img.shields.io/pypi/l/ynab-import)](https://github.com/demonno/ynab-import/blob/master/LICENSE)
+Automate transaction imports from bank CSV exports to YNAB API.
 
-Budgeting Tool helps you plan and manage your personal budget.
-In Ynab you have budgets, each budget has one or more accounts with transactions.
+**Supported banks:** Swedbank, Revolut, TBC
 
 ## Install
 
-    pip install ynab-import
-
-## Configuration file
-
-Create config file
-
-    example.env
-
-```ini
-READER=swedbank_csv
-WRITER=ynab_api
-READ_FROM_PATH=...
-
-YNAB_API_key=**********
-YNAB_BUDGET_ID==**********
-YNAB_ACCOUNT_ID==**********
+```bash
+pip install ynab-import
 ```
 
-# CLI
+## Quick Start
 
-## Help command
+```bash
+# Configure with your YNAB API credentials
+export YNAB_API_KEY=your_token
+export YNAB_BUDGET_ID=your_budget_id
+export YNAB_ACCOUNT_ID=your_account_id
 
-    ynab-import --help
+# Import transactions
+ynab-import --config .env import
+```
 
-## Check configuration
+## Development
 
-    ynab-import --config example.env check
+```bash
+make install      # Install dependencies
+make test         # Run tests (2 passed, 1 skipped)
+make fmt          # Format code
+make lint         # Check code quality
+make check        # Full checks (lint + type)
+```
 
-## Import transactions
+See [CLAUDE.md](CLAUDE.md) for architecture and [AGENTS.md](AGENTS.md) for AI assistant guidelines.
 
-    ynab-import --config example.env import
+## License
 
-# Run as a python module
-
-    python -m ynab_import --help
-
-
-# YNAB API KEY
-To set up API integration with YNAB you need to create `Personal Access Token`.
-
-Go to `https://app.youneedabudget.com/settings/developer` and click `New Token`
+MIT
