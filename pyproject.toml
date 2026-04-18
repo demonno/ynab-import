@@ -36,6 +36,7 @@ dev = [
     "hypothesis>=6.4",
     "isort>=5.4.2",
     "mypy>=1.6.1",
+    "pip-audit>=2.0.0",
     "pytest>=6.1.1",
     "pytest-cov>=2.10.1",
     "pytest-sugar>=0.9.4",
