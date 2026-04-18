@@ -34,6 +34,18 @@ make check        # Full checks (lint + type)
 
 See [CLAUDE.md](CLAUDE.md) for architecture and [AGENTS.md](AGENTS.md) for AI assistant guidelines.
 
+## Publishing
+
+### Test PyPI (Automatic)
+- Every successful master commit auto-publishes to Test PyPI
+- Available at: https://test.pypi.org/project/ynab-import/
+- Test install: `pip install -i https://test.pypi.org/simple/ ynab-import==0.0.10`
+
+### PyPI (Manual Release)
+- Create GitHub release with matching version tag
+- Automatically publishes to PyPI
+- Requires: `TEST_PYPI_API_KEY` and `PYPI_API_KEY` secrets configured in GitHub
+
 ## License
 
 MIT

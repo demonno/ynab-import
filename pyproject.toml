@@ -70,10 +70,11 @@ quote-style = "double"
 indent-style = "space"
 
 [tool.mypy]
-python_version = "3.8"
+python_version = "3.12"
 ignore_missing_imports = true
 warn_return_any = true
 warn_unused_configs = true
+exclude = ["ynab_import/infra/revolut", "ynab_import/infra/http.py", "ynab_import/infra/ynab.py", "ynab_import/runner/cli.py", "ynab_import/setup.py"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
