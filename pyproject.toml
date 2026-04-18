@@ -43,6 +43,7 @@ dev = [
     "requests-mock>=1.8",
     "ruff>=0.3.0",
     "safety>=1.9.0",
+    "twine>=6.0.0",
 ]
 
 [tool.ruff]
