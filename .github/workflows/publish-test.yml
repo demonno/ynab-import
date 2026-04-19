@@ -31,7 +31,13 @@ jobs:
       - name: Build package
         run: uv build
 
+      - name: Check if version changed
+        id: version
+        run: bash scripts/check-version-changed.sh
+        continue-on-error: true
+
       - name: Publish to Test PyPI
+        if: steps.version.outcome == 'success'
         run: uv run twine upload --repository testpypi dist/* -u __token__ -p ${{ secrets.TEST_PYPI_API_KEY }} --verbose
         env:
           TWINE_SKIP_EXISTING: true
