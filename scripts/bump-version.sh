@@ -12,5 +12,5 @@ case "$BUMP_TYPE" in
   *) echo "Invalid bump type: $BUMP_TYPE"; exit 1 ;;
 esac
 
-sed -i '' "s/^version = \"$CURRENT\"/version = \"$NEW\"/" pyproject.toml
+sed -i.bak "s/^version = \"$CURRENT\"/version = \"$NEW\"/" pyproject.toml && rm pyproject.toml.bak
 echo "Bumped: $CURRENT → $NEW"
