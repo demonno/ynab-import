@@ -1,0 +1,52 @@
+name: Bump Version
+
+on:
+  workflow_dispatch:
+    inputs:
+      bump_type:
+        type: choice
+        description: "Version bump type"
+        options:
+          - patch
+          - minor
+          - major
+        required: true
+
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Configure git
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+
+      - name: Extract current version
+        id: current
+        run: |
+          VERSION=$(grep "^version = " pyproject.toml | cut -d'"' -f2)
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Bump version
+        run: bash scripts/bump-version.sh ${{ inputs.bump_type }}
+
+      - name: Extract new version
+        id: new
+        run: |
+          VERSION=$(grep "^version = " pyproject.toml | cut -d'"' -f2)
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Commit and push
+        run: |
+          git add pyproject.toml
+          git commit -m "chore: bump version to ${{ steps.new.outputs.version }}"
+          git push origin master
+
+      - name: Summary
+        run: |
+          echo "Version bumped: ${{ steps.current.outputs.version }} → ${{ steps.new.outputs.version }}"
+          echo "Commit pushed to master"
+          echo "ci.yml will auto-trigger, followed by publish-test.yml if checks pass"
