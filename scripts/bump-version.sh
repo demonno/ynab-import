@@ -29,4 +29,8 @@ uv run bump-my-version bump "$BUMP_TYPE"
 # Get new version after bump
 NEW=$(grep "^version = " pyproject.toml | cut -d'"' -f2)
 
+# Push the commit created by bump-my-version
+git push origin master
+
 echo "Bumped: $CURRENT → $NEW"
+echo "Pushed to origin/master"
