@@ -13,6 +13,13 @@ case "$BUMP_TYPE" in
     ;;
 esac
 
+# Clean uv.lock if modified (from previous runs)
+if git diff --quiet uv.lock; then
+  :
+else
+  git checkout uv.lock
+fi
+
 # Get current version before bump
 CURRENT=$(grep "^version = " pyproject.toml | cut -d'"' -f2)
 
