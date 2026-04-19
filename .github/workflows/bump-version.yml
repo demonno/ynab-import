@@ -45,8 +45,15 @@ jobs:
           git commit -m "chore: bump version to ${{ steps.new.outputs.version }}"
           git push origin master
 
+      - name: Trigger CI workflow
+        run: |
+          gh workflow run ci.yml -r master
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Summary
         run: |
           echo "Version bumped: ${{ steps.current.outputs.version }} → ${{ steps.new.outputs.version }}"
           echo "Commit pushed to master"
-          echo "ci.yml will auto-trigger, followed by publish-test.yml if checks pass"
+          echo "CI workflow triggered manually"
+          echo "publish-test.yml will auto-trigger when CI completes"
