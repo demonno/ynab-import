@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "ynab-import"
-version = "0.0.12"
+version = "0.0.13"
 description = "Automate transaction import troubles to ynab."
 readme = "README.md"
 license = { text = "MIT" }
