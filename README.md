@@ -49,4 +49,3 @@ See [CLAUDE.md](CLAUDE.md) for architecture and [AGENTS.md](AGENTS.md) for AI as
 ## License
 
 MIT
-# Test commit
