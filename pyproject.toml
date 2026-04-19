@@ -12,7 +12,7 @@ authors = [
     { name = "demonno", email = "demur.nodia@gmail.com" }
 ]
 keywords = ["ynab", "api", "import", "cli"]
-requires-python = ">=3.8"
+requires-python = ">=3.9"
 dependencies = [
     "dataclass-csv>=1.1",
     "pydantic[dotenv]>=1.9.0",
@@ -30,7 +30,7 @@ ynab-import = "ynab_import.runner.cli:app"
 [dependency-groups]
 dev = [
     "black>=22.3.0",
-    "bump-my-version>=0.21.0",
+    "bump-my-version==1.3.0",
     "bump2version>=1.0.1",
     "coverage>=6.3.2",
     "flake8>=3.8.4",
