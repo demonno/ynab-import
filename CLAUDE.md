@@ -71,7 +71,6 @@ make check  # Full type checking
 
 ## Known Issues
 
-- Revolut: Amount parsing incomplete (transformers)
 - Coverage: ~36%, goal is 80%+
 - Test: 1 skipped (`test_base_transformer_amount`)
 
