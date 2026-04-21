@@ -2,10 +2,10 @@
 
 ## What This Is
 
-CLI tool for automating bank transaction imports to YNAB budgeting app. Reads CSV from 3 banks, transforms to common format, writes to YNAB API.
+CLI tool for automating bank transaction imports to YNAB budgeting app. Reads CSV from 2 banks, transforms to common format, writes to YNAB API.
 
 **Core modules:**
-- `ynab_import/core/` — Domain models, transformers
+- `ynab_import/core/` — Domain models
 - `ynab_import/infra/` — Bank readers, YNAB API client
 - `ynab_import/runner/` — CLI (Typer)
 
@@ -36,7 +36,6 @@ make check       # Should show: no type errors
 Each bank has:
 1. `models.py` — CSV dataclass (fields from CSV)
 2. `providers.py` — Reader class implementing `BaseProvider`
-3. Optional: `transformers.py` — Convert to common `Transaction` model
 
 ### Data Flow
 ```
@@ -72,7 +71,6 @@ make check  # Full type checking
 ## Known Issues
 
 - Coverage: ~36%, goal is 80%+
-- Test: 1 skipped (`test_base_transformer_amount`)
 
 ## For AI Assistants
 
