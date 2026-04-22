@@ -15,7 +15,7 @@ class YnabAPIBasedRepository:
     http_client: HttpClient[Response]
     budget_id: str
     account_id: str
-    counter: Counter = field(default_factory=Counter)
+    _counter: Counter = field(default_factory=Counter, init=False, repr=False, compare=False)
 
     def create_many(self, transactions: List[Transaction]) -> int:
         ynab_transactions = [asdict(self._to_ynab(t)) for t in transactions]
@@ -32,8 +32,8 @@ class YnabAPIBasedRepository:
     def _to_ynab(self, transaction: Transaction) -> YnabTransaction:
         iso_date = transaction.date.isoformat()
         key = (self.account_id, transaction.amount, iso_date)
-        suffix = self.counter[key]
-        self.counter[key] += 1
+        suffix = self._counter[key]
+        self._counter[key] += 1
         import_id = f"YNAB:{transaction.amount}:{iso_date}:{suffix}"
 
         return YnabTransaction(

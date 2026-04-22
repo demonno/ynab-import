@@ -42,3 +42,28 @@ def test_import_id_counter_suffixes_collisions():
         "YNAB:-1500:2026-04-19T00:00:00:1",
         "YNAB:-2000:2026-04-19T00:00:00:0",
     ]
+
+
+def test_counter_is_per_instance():
+    same_day = datetime(2026, 4, 19)
+    tx = Transaction(date=same_day, amount=-1500, payee_name="Coffee", description="a")
+
+    first_client = FakeHttpClient()
+    first_repo = YnabAPIBasedRepository(
+        http_client=first_client,
+        budget_id="budget-1",
+        account_id="account-1",
+    )
+    first_repo.create_many([tx])
+
+    second_client = FakeHttpClient()
+    second_repo = YnabAPIBasedRepository(
+        http_client=second_client,
+        budget_id="budget-1",
+        account_id="account-1",
+    )
+    second_repo.create_many([tx])
+
+    first_id = first_client.posted_bodies[0]["transactions"][0]["import_id"]
+    second_id = second_client.posted_bodies[0]["transactions"][0]["import_id"]
+    assert first_id == second_id == "YNAB:-1500:2026-04-19T00:00:00:0"
