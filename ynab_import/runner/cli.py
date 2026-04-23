@@ -73,7 +73,7 @@ def run_import() -> None:
     Read/Import transactions from source to destination
     """
     settings = state["config"]
-    typer.echo(f"Import transactions with config {settings.dict()}")
+    typer.echo("Importing transactions")
 
     reader = create_reader(settings)
     writer = create_writer(settings)
