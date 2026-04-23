@@ -2,7 +2,7 @@
 
 Automate transaction imports from bank CSV exports to YNAB API.
 
-**Supported banks:** Swedbank, Revolut, TBC
+**Supported banks:** Swedbank, TBC
 
 ## Install
 
